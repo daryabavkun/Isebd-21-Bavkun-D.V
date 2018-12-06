@@ -10,11 +10,11 @@ namespace WindowsFormsDumpTruck
     public abstract class Vehicle : ITransport
     {
         /// <summary>
-        /// Левая координата отрисовки автомобиля
+        /// Левая координата отрисовки грузовика
         /// </summary>
         protected float _startPosX;
         /// <summary>
-        /// Правая кооридната отрисовки автомобиля
+        /// Правая кооридната отрисовки грузовика
         /// </summary>
         protected float _startPosY;
         /// <summary>
@@ -28,7 +28,7 @@ namespace WindowsFormsDumpTruck
         /// </summary>
         public int MaxSpeed { protected set; get; }
         /// <summary>
-        /// Вес автомобиля
+        /// Вес грузовика
         /// </summary>
         public float Weight { protected set; get; }
         /// <summary>

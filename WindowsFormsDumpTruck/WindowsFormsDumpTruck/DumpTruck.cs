@@ -24,7 +24,6 @@ namespace WindowsFormsDumpTruck
         /// <param name="weight">Вес грузовика</param>
         /// <param name="mainColor">Основной цвет кузова</param>
         /// <param name="dopColor">Дополнительный цвет</param>
-        /// <param name="dopColor">Дополнительный цвет</param>
         public DumpTruck(int maxSpeed, float weight, Color mainColor, Color dopColor, bool body) :
             base(maxSpeed, weight, mainColor)
         {
