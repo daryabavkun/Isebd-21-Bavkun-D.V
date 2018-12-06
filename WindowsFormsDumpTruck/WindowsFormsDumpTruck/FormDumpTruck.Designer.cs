@@ -34,17 +34,18 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.pictureBoxDumpTruck = new System.Windows.Forms.PictureBox();
+            this.buttonCreateDumpTruck = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDumpTruck)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCreateTruck
             // 
             this.buttonCreateTruck.Location = new System.Drawing.Point(16, 15);
-            this.buttonCreateTruck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCreateTruck.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCreateTruck.Name = "buttonCreateTruck";
-            this.buttonCreateTruck.Size = new System.Drawing.Size(100, 28);
+            this.buttonCreateTruck.Size = new System.Drawing.Size(162, 28);
             this.buttonCreateTruck.TabIndex = 1;
-            this.buttonCreateTruck.Text = "создать ";
+            this.buttonCreateTruck.Text = "создать грузовик";
             this.buttonCreateTruck.UseVisualStyleBackColor = true;
             this.buttonCreateTruck.Click += new System.EventHandler(this.buttonCreateTruck_Click);
             // 
@@ -54,7 +55,7 @@
             this.buttonLeft.BackgroundImage = global::WindowsFormsDumpTruck.Properties.Resources.лево;
             this.buttonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonLeft.Location = new System.Drawing.Point(1047, 473);
-            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLeft.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(40, 37);
             this.buttonLeft.TabIndex = 5;
@@ -67,7 +68,7 @@
             this.buttonDown.BackgroundImage = global::WindowsFormsDumpTruck.Properties.Resources.низ;
             this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDown.Location = new System.Drawing.Point(1092, 517);
-            this.buttonDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDown.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(40, 37);
             this.buttonDown.TabIndex = 4;
@@ -80,7 +81,7 @@
             this.buttonRight.BackgroundImage = global::WindowsFormsDumpTruck.Properties.Resources.низ1;
             this.buttonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonRight.Location = new System.Drawing.Point(1139, 473);
-            this.buttonRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRight.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRight.Name = "buttonRight";
             this.buttonRight.Size = new System.Drawing.Size(40, 37);
             this.buttonRight.TabIndex = 3;
@@ -93,7 +94,7 @@
             this.buttonUp.BackgroundImage = global::WindowsFormsDumpTruck.Properties.Resources.верх1;
             this.buttonUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonUp.Location = new System.Drawing.Point(1092, 428);
-            this.buttonUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUp.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(40, 37);
             this.buttonUp.TabIndex = 2;
@@ -105,25 +106,36 @@
             this.pictureBoxDumpTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxDumpTruck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxDumpTruck.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxDumpTruck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxDumpTruck.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxDumpTruck.Name = "pictureBoxDumpTruck";
             this.pictureBoxDumpTruck.Size = new System.Drawing.Size(1179, 569);
             this.pictureBoxDumpTruck.TabIndex = 0;
             this.pictureBoxDumpTruck.TabStop = false;
             this.pictureBoxDumpTruck.Click += new System.EventHandler(this.buttonMove_Click);
             // 
+            // buttonCreateDumpTruck
+            // 
+            this.buttonCreateDumpTruck.Location = new System.Drawing.Point(214, 15);
+            this.buttonCreateDumpTruck.Name = "buttonCreateDumpTruck";
+            this.buttonCreateDumpTruck.Size = new System.Drawing.Size(172, 28);
+            this.buttonCreateDumpTruck.TabIndex = 6;
+            this.buttonCreateDumpTruck.Text = "создать самосвал";
+            this.buttonCreateDumpTruck.UseVisualStyleBackColor = true;
+            this.buttonCreateDumpTruck.Click += new System.EventHandler(this.buttonCreateDumpTruck_Click);
+            // 
             // FormTruck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 569);
+            this.Controls.Add(this.buttonCreateDumpTruck);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonCreateTruck);
             this.Controls.Add(this.pictureBoxDumpTruck);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormTruck";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Самосвал";
@@ -140,6 +152,7 @@
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonLeft;
+        private System.Windows.Forms.Button buttonCreateDumpTruck;
     }
 }
 

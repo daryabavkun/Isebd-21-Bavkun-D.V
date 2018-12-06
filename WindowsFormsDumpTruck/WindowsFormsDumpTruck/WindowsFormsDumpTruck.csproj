@@ -54,8 +54,11 @@
     <Compile Include="FormDumpTruck.Designer.cs">
       <DependentUpon>FormDumpTruck.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITransport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Truck.cs" />
+    <Compile Include="Vehicle.cs" />
     <EmbeddedResource Include="FormDumpTruck.resx">
       <DependentUpon>FormDumpTruck.cs</DependentUpon>
     </EmbeddedResource>

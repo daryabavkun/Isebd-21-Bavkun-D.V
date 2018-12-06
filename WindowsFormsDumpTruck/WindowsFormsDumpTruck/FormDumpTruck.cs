@@ -12,7 +12,7 @@ namespace WindowsFormsDumpTruck
 {
     public partial class FormTruck : Form
     {
-        private DumpTruck dumptruck;
+        private ITransport dumptruck;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -31,16 +31,28 @@ namespace WindowsFormsDumpTruck
             pictureBoxDumpTruck.Image = bmp;
         }
         /// <summary>
-        /// Обработка нажатия кнопки "Создать"
+        /// Обработка нажатия кнопки "Создать грузовик"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void buttonCreateTruck_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            dumptruck = new DumpTruck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue, Color.Yellow);
-            dumptruck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxDumpTruck.Width,
-           pictureBoxDumpTruck.Height);
+            dumptruck = new Truck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+            dumptruck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxDumpTruck.Width, pictureBoxDumpTruck.Height);
+            Draw();
+        }
+        /// <summary>
+        /// Обработка нажатия кнопки "Создать грузовик-самосвал"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCreateDumpTruck_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            dumptruck = new DumpTruck(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue, Color.Yellow, true);
+            dumptruck.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxDumpTruck.Width, pictureBoxDumpTruck.Height);
             Draw();
         }
         /// <summary>
