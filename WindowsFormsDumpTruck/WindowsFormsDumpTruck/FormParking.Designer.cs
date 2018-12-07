@@ -32,18 +32,19 @@
             this.buttonSetDumpTruck = new System.Windows.Forms.Button();
             this.buttonTakeTruck = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBoxTakeTruck = new System.Windows.Forms.PictureBox();
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeTruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSetTruck
             // 
-            this.buttonSetTruck.Location = new System.Drawing.Point(925, 12);
+            this.buttonSetTruck.Location = new System.Drawing.Point(775, 215);
             this.buttonSetTruck.Name = "buttonSetTruck";
             this.buttonSetTruck.Size = new System.Drawing.Size(130, 54);
             this.buttonSetTruck.TabIndex = 1;
@@ -53,9 +54,9 @@
             // 
             // buttonSetDumpTruck
             // 
-            this.buttonSetDumpTruck.Location = new System.Drawing.Point(925, 90);
+            this.buttonSetDumpTruck.Location = new System.Drawing.Point(925, 215);
             this.buttonSetDumpTruck.Name = "buttonSetDumpTruck";
-            this.buttonSetDumpTruck.Size = new System.Drawing.Size(130, 67);
+            this.buttonSetDumpTruck.Size = new System.Drawing.Size(130, 54);
             this.buttonSetDumpTruck.TabIndex = 2;
             this.buttonSetDumpTruck.Text = "Припарковать самосвал";
             this.buttonSetDumpTruck.UseVisualStyleBackColor = true;
@@ -77,13 +78,6 @@
             this.maskedTextBox.Name = "maskedTextBox";
             this.maskedTextBox.Size = new System.Drawing.Size(54, 22);
             this.maskedTextBox.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
             // 
             // label2
             // 
@@ -121,14 +115,34 @@
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
             // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.ItemHeight = 16;
+            this.listBoxLevels.Location = new System.Drawing.Point(786, 49);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(269, 148);
+            this.listBoxLevels.TabIndex = 8;
+            this.listBoxLevels.SelectedIndexChanged += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(905, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Уровни:";
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.maskedTextBox);
             this.Controls.Add(this.buttonTakeTruck);
             this.Controls.Add(this.pictureBoxTakeTruck);
@@ -152,8 +166,9 @@
         private System.Windows.Forms.PictureBox pictureBoxTakeTruck;
         private System.Windows.Forms.Button buttonTakeTruck;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Label label1;
     }
 }
