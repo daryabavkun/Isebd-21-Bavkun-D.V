@@ -69,8 +69,8 @@ namespace WindowsFormsDumpTruck
             Pen pen = new Pen(Color.Black);
             //кузов
             Brush br = new SolidBrush(MainColor);
-            g.FillRectangle(br, _startPosX - 15, _startPosY + 20, 30, 50);
-            g.FillRectangle(br, _startPosX - 30, _startPosY + 50, 40, 30);
+            g.FillRectangle(br, _startPosX + 5, _startPosY + 20, 30, 50);
+            g.FillRectangle(br, _startPosX - 10, _startPosY + 50, 40, 30);
 
             Brush brBlack = new SolidBrush(Color.Black);
             g.FillRectangle(brBlack, _startPosX + 10, _startPosY + 70, 120, 15);
