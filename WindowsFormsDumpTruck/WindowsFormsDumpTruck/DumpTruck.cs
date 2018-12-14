@@ -34,6 +34,18 @@ namespace WindowsFormsDumpTruck
             Weight = weight;
             MainColor = mainColor;
         }
+        public DumpTruck(string info) : base(info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 5)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                Body = Convert.ToBoolean(strs[4]);
+            }
+        }
         public override void DrawTruck(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -51,6 +63,10 @@ namespace WindowsFormsDumpTruck
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+        public override string ToString()
+        {
+            return base.ToString() + ";" + DopColor.Name + ";" + Body;
         }
     }
 }
