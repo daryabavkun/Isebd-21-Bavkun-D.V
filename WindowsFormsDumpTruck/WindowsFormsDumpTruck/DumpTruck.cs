@@ -24,6 +24,7 @@ namespace WindowsFormsDumpTruck
         /// <param name="weight">Вес грузовика</param>
         /// <param name="mainColor">Основной цвет кузова</param>
         /// <param name="dopColor">Дополнительный цвет</param>
+        /// <param name="body"> кузов </param>
         public DumpTruck(int maxSpeed, float weight, Color mainColor, Color dopColor, bool body) :
             base(maxSpeed, weight, mainColor)
         {
@@ -43,6 +44,13 @@ namespace WindowsFormsDumpTruck
                 g.FillRectangle(br, _startPosX + 10, _startPosY + 20, 120, 50);
             }
             base.DrawTruck(g);
+        }
+        /// Смена дополнительного цвета
+        /// </summary>
+        /// <param name="color"></param>
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }

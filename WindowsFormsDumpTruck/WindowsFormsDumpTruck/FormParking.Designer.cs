@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonSetTruck = new System.Windows.Forms.Button();
-            this.buttonSetDumpTruck = new System.Windows.Forms.Button();
             this.buttonTakeTruck = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,29 +36,10 @@
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonSetTruck = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeTruck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonSetTruck
-            // 
-            this.buttonSetTruck.Location = new System.Drawing.Point(775, 215);
-            this.buttonSetTruck.Name = "buttonSetTruck";
-            this.buttonSetTruck.Size = new System.Drawing.Size(130, 54);
-            this.buttonSetTruck.TabIndex = 1;
-            this.buttonSetTruck.Text = "Припарковать грузовик";
-            this.buttonSetTruck.UseVisualStyleBackColor = true;
-            this.buttonSetTruck.Click += new System.EventHandler(this.buttonSetTruck_Click);
-            // 
-            // buttonSetDumpTruck
-            // 
-            this.buttonSetDumpTruck.Location = new System.Drawing.Point(925, 215);
-            this.buttonSetDumpTruck.Name = "buttonSetDumpTruck";
-            this.buttonSetDumpTruck.Size = new System.Drawing.Size(130, 54);
-            this.buttonSetDumpTruck.TabIndex = 2;
-            this.buttonSetDumpTruck.Text = "Припарковать самосвал";
-            this.buttonSetDumpTruck.UseVisualStyleBackColor = true;
-            this.buttonSetDumpTruck.Click += new System.EventHandler(this.buttonSetDumpTruck_Click);
             // 
             // buttonTakeTruck
             // 
@@ -134,11 +113,22 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Уровни:";
             // 
+            // buttonSetTruck
+            // 
+            this.buttonSetTruck.Location = new System.Drawing.Point(816, 222);
+            this.buttonSetTruck.Name = "buttonSetTruck";
+            this.buttonSetTruck.Size = new System.Drawing.Size(194, 42);
+            this.buttonSetTruck.TabIndex = 10;
+            this.buttonSetTruck.Text = "Добавить грузовик";
+            this.buttonSetTruck.UseVisualStyleBackColor = true;
+            this.buttonSetTruck.Click += new System.EventHandler(this.buttonSetTruck_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.buttonSetTruck);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.label3);
@@ -146,8 +136,6 @@
             this.Controls.Add(this.maskedTextBox);
             this.Controls.Add(this.buttonTakeTruck);
             this.Controls.Add(this.pictureBoxTakeTruck);
-            this.Controls.Add(this.buttonSetDumpTruck);
-            this.Controls.Add(this.buttonSetTruck);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormParking";
             this.Text = "Парковка";
@@ -161,8 +149,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button buttonSetTruck;
-        private System.Windows.Forms.Button buttonSetDumpTruck;
         private System.Windows.Forms.PictureBox pictureBoxTakeTruck;
         private System.Windows.Forms.Button buttonTakeTruck;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
@@ -170,5 +156,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonSetTruck;
     }
 }
