@@ -61,11 +61,11 @@ namespace WindowsFormsDumpTruck
             }
         }
         // <summary>
-        /// Сохранение информации по автомобилям на парковках в файл
+        /// Сохранение информации по грузовикам на парковках в файл
         /// </summary>
         /// <param name="filename">Путь и имя файла</param>
         /// <returns></returns>
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -73,37 +73,33 @@ namespace WindowsFormsDumpTruck
             }
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
+                //Записываем количество уровней
+                WriteToFile("CountLeveles:" + parkingStages.Count + Environment.NewLine, fs);
+                foreach (var level in parkingStages)
                 {
-                    //Записываем количество уровней
-                    WriteToFile("CountLeveles:" + parkingStages.Count + Environment.NewLine, fs);
-                    foreach (var level in parkingStages)
+                    //Начинаем уровень
+                    WriteToFile("Level" + Environment.NewLine, fs);
+                    for (int i = 0; i < countPlaces; i++)
                     {
-                        //Начинаем уровень
-                        WriteToFile("Level" + Environment.NewLine, fs);
-                        for (int i = 0; i < countPlaces; i++)
+                        try
                         {
                             var truck = level[i];
-                            if (truck != null)
+                            //Записываем тип грузовика
+                            if (truck.GetType().Name == "Truck")
                             {
-                                //если место не пустое
-                                //Записываем тип мшаины
-                                if (truck.GetType().Name == "Truck")
-                                {
-                                    WriteToFile(i + ":Truck:", fs);
-                                }
-                                if (truck.GetType().Name == "DumpTruck")
-                                {
-                                    WriteToFile(i + ":DumpTruck:", fs);
-                                }
-                                //Записываемые параметры
-                                WriteToFile(truck + Environment.NewLine, fs);
+                                WriteToFile(i + ":Truck:", fs);
                             }
+                            if (truck.GetType().Name == "DumpTruck")
+                            {
+                                WriteToFile(i + ":DumpTruck:", fs);
+                            }
+                            //Записываемые параметры
+                            WriteToFile(truck + Environment.NewLine, fs);
                         }
+                        finally { }
                     }
                 }
             }
-            return true;
         }
         /// <summary>
         /// Метод записи информации в файл
@@ -120,11 +116,11 @@ namespace WindowsFormsDumpTruck
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(filename, FileMode.Open))
@@ -154,7 +150,7 @@ namespace WindowsFormsDumpTruck
             else
             {
                 //если нет такой записи, то это не те данные
-                return false;
+                throw new Exception("Неверный формат файла");
             }
             int counter = -1;
             ITransport truck = null;
@@ -182,7 +178,6 @@ namespace WindowsFormsDumpTruck
                 }
                 parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = truck;
             }
-            return true;
         }
     }
 }
