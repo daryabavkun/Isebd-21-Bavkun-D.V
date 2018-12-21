@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Collections;
 
 namespace WindowsFormsDumpTruck
 {
@@ -11,7 +12,7 @@ namespace WindowsFormsDumpTruck
     /// Параметризованны класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Parking<T> where T : class, ITransport
+    public class Parking<T> : IEnumerator<T>, IEnumerable<T>, IComparable<Parking<T>> where T : class, ITransport
     {
         /// <summary>
         /// Массив объектов, которые храним
@@ -38,6 +39,20 @@ namespace WindowsFormsDumpTruck
         /// </summary>
         private int _placeSizeHeight = 80;
         /// <summary>
+        /// Текущий элемент для вывода через IEnumerator (будет обращаться по своему индексу к ключу словаря, по которму будет возвращаться запись)
+        /// </summary>
+        private int _currentIndex;
+        /// <summary>
+        /// Получить порядковое место на парковке
+        /// </summary>
+        public int GetKey
+        {
+            get
+            {
+                return _places.Keys.ToList()[_currentIndex];
+            }
+        }
+        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="sizes">Количество мест на парковке</param>
@@ -62,6 +77,10 @@ namespace WindowsFormsDumpTruck
             if (p._places.Count == p._maxCount)
             {
                 throw new ParkingOverflowException();
+            }
+            if (p._places.ContainsValue(truck))
+            {
+                throw new ParkingAlreadyHaveException();
             }
             for (int i = 0; i < p._maxCount; i++)
             {
@@ -113,6 +132,10 @@ namespace WindowsFormsDumpTruck
             {
                 _places[keys[i]].DrawTruck(g);
             }
+            foreach (var truck in _places)
+            {
+                truck.Value.DrawTruck(g);
+            }
         }
         /// <summary>
         /// Метод отрисовки разметки парковочных мест
@@ -146,7 +169,7 @@ namespace WindowsFormsDumpTruck
                 {
                     return _places[ind];
                 }
-                return null;
+                throw new ParkingNotFoundException(ind);
             }
             set
             {
@@ -154,13 +177,118 @@ namespace WindowsFormsDumpTruck
                 {
                     _places.Add(ind, value);
                     _places[ind].SetPosition(5 + ind / 5 * _placeSizeWidth + 5, ind % 5 *
-                   _placeSizeHeight + 15, PictureWidth, PictureHeight+8);
+                   _placeSizeHeight + 15, PictureWidth, PictureHeight);
                 }
                 else
                 {
                     throw new ParkingOccupiedPlaceException(ind);
                 }
             }
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerator для получения текущего элемента
+        /// </summary>
+        public T Current
+        {
+            get
+            {
+                return _places[_places.Keys.ToList()[_currentIndex]];
+            }
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerator для получения текущего элемента
+        /// </summary>
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerator, вызываемый при удалении объекта
+        /// </summary>
+        public void Dispose()
+        {
+            _places.Clear();
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerator для перехода к следующему элементу или началу коллекции
+        /// </summary>
+        /// <returns></returns>
+        public bool MoveNext()
+        {
+            if (_currentIndex + 1 >= _places.Count)
+            {
+                Reset();
+                return false;
+            }
+            _currentIndex++;
+            return true;
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerator для сброса и возврата к началу коллекции
+        /// </summary>
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerable
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+        /// <summary>
+        /// Метод интерфейса IEnumerable
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        /// <summary>
+        /// Метод интерфейса IComparable
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Parking<T> other)
+        {
+            if (_places.Count > other._places.Count)
+            {
+                return -1;
+            }
+            else if (_places.Count < other._places.Count)
+            {
+                return 1;
+            }
+            else if (_places.Count > 0)
+            {
+                var thisKeys = _places.Keys.ToList();
+                var otherKeys = other._places.Keys.ToList();
+                for (int i = 0; i < _places.Count; ++i)
+                {
+                    if (_places[thisKeys[i]] is Truck && other._places[thisKeys[i]] is DumpTruck)
+                    {
+                        return 1;
+                    }
+                    if (_places[thisKeys[i]] is DumpTruck && other._places[thisKeys[i]] is Truck)
+                    {
+                        return -1;
+                    }
+                    if (_places[thisKeys[i]] is Truck && other._places[thisKeys[i]] is Truck)
+                    {
+                        return (_places[thisKeys[i]] is Truck).CompareTo(other._places[thisKeys[i]] is Truck);
+                    }
+                    if (_places[thisKeys[i]] is DumpTruck && other._places[thisKeys[i]] is DumpTruck)
+                    {
+                        return (_places[thisKeys[i]] is DumpTruck).CompareTo(other._places[thisKeys[i]] is DumpTruck);
+                    }
+                }
+            }
+            return 0;
         }
     }
 }

@@ -179,5 +179,12 @@ namespace WindowsFormsDumpTruck
                 parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = truck;
             }
         }
+        /// <summary>
+        /// Сортировка уровней
+        /// </summary>
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }

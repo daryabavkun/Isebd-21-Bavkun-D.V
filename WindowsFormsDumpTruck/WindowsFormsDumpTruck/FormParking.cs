@@ -128,6 +128,10 @@ namespace WindowsFormsDumpTruck
                 {
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (ParkingAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -146,15 +150,12 @@ namespace WindowsFormsDumpTruck
                 try
                 {
                     parking.SaveData(saveFileDialog.FileName);
-                    MessageBox.Show("Сохранение прошло успешно", "Результат",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -176,16 +177,25 @@ namespace WindowsFormsDumpTruck
                 }
                 catch (ParkingOccupiedPlaceException ex)
                 {
-                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Draw();
             }
+        }
+        /// <summary>
+        /// Обработка нажатия кнопки "Сортировка"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            parking.Sort();
+            Draw();
+            logger.Info("Сортировка уровней");
         }
     }
 }

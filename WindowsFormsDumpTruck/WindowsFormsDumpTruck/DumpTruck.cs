@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsDumpTruck
 {
-    public class DumpTruck : Truck
+    public class DumpTruck : Truck, IComparable<DumpTruck>, IEquatable<DumpTruck>
     {
         /// <summary>
         /// Дополнительный цвет
@@ -67,6 +67,83 @@ namespace WindowsFormsDumpTruck
         public override string ToString()
         {
             return base.ToString() + ";" + DopColor.Name + ";" + Body;
+        }
+        /// <summary>
+        /// Метод интерфейса IComparable для класса DumpTruck
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(DumpTruck other)
+        {
+            var res = (this is Truck).CompareTo(other is Truck);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                DopColor.Name.CompareTo(other.DopColor.Name);
+            }
+            if (Body != other.Body)
+            {
+                return Body.CompareTo(other.Body);
+            }
+            return 0;
+        }
+        /// <summary>
+        /// Метод интерфейса IEquatable для класса DumpTruck
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(DumpTruck other)
+        {
+            var res = (this as Truck).Equals(other as Truck);
+            if (!res)
+            {
+                return res;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Body != other.Body)
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            DumpTruck truckObj = obj as DumpTruck;
+            if (truckObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(truckObj);
+            }
+        }
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
